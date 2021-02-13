@@ -9,3 +9,16 @@
 .title{
   justify-content: center;
 }
+
+.Logo{
+  width: 200px;
+  height: 200px;
+}
+
+.card-title{
+  text-align: center;
+}
+
+.card-content{
+  text-align: center;
+}
