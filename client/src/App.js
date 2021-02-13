@@ -1,12 +1,15 @@
 import React from 'react'
 import './index.css'
+import Navbar from './components/Navbar'
+import Home from './components/Home'
 import { Typography } from '@material-ui/core'
 
 
 const App = () => {
   return (
     <div>
-      <h1><strong className='green-text text-darken-4 title'>WeedFeed</strong></h1>
+      <Navbar/>
+      <Home/>
     </div>
   )
 }

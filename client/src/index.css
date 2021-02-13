@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap');
 
 *{
-  font-family: 'Single Day', cursive;
+  /* font-family: 'Single Day', cursive; */
+  font-family: 'Cabin Sketch', cursive;
 }
 
 .title{
