@@ -14,7 +14,7 @@ const Home = () => {
               </span>
               <div className='card-content'>
                 <h5>Welcome to WeedFeed. A safe and social place for cannabis users. We are
-                  happy you have found us.
+                happy you have found us.
                 </h5>
                 <h5>A few rules and housekeeping first: </h5>
                 <h6>Those under 21 years of age are prohibited.</h6>
