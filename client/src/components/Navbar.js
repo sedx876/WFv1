@@ -12,20 +12,55 @@ const Navbar = () => {
             </a>
 
         <ul id="nav-mobile" className="right hide-on-med-and-down">
+          
           <li>
-            <a className='light-green-text text-accent-1 active' 
-              href="sass.html">
-                Members Directory
+            <a className='light-green-text text-accent-1 active'>
+              Members Directory
+            </a>
+          </li>
+
+          <li>
+            <a className='light-green-text text-accent-1'>
+              Log In
+            </a>
+          </li>
+
+          <li>
+            <a className='light-green-text text-accent-1'>
+              Create Account
+            </a>
+          </li>
+
+          <li>
+            <a className='light-green-text text-accent-1'>
+              Find Member
+            </a>
+          </li>
+
+          <li>
+            <a className='light-green-text text-accent-1'>
+              Create Post
+            </a>
+          </li>
+
+          <li>
+            <a className='light-green-text text-accent-1'>
+              Strain Journal
+            </a>
+          </li>
+
+          <li>
+            <a className='light-green-text text-accent-1'>
+              Profile
+            </a>
+          </li>
+
+          <li>
+            <a className='light-green-text text-accent-1'>
+              Log Out
             </a>
           </li>
           
-          <li><a className='light-green-text text-accent-1' href="badges.html">Log In</a></li>
-          <li><a className='light-green-text text-accent-1' href="collapsible.html">Create Account</a></li>
-          <li><a className='light-green-text text-accent-1' href="collapsible.html">Find Member</a></li>
-          <li><a className='light-green-text text-accent-1' href="collapsible.html">Create Post</a></li>
-          <li><a className='light-green-text text-accent-1' href="collapsible.html">Strain Journal</a></li>
-          <li><a className='light-green-text text-accent-1' href="collapsible.html">Profile</a></li>
-          <li><a className='light-green-text text-accent-1' href="collapsible.html">Log Out</a></li>
         </ul>
         </div>
       </nav>
