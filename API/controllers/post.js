@@ -102,3 +102,71 @@ exports.isPoster = (req, res, next) => {
   }
   next()
 }
+
+exports.updatePost = (req, res, next)=> {
+  let form = new formidable.IncomingForm()
+  form.keepExtensions = true 
+  form.parse(req, (err, fields, files) => {
+    if (err){
+      return res.status(400).json({
+        error: "Photo Could Not Be Uploaded"
+      })
+    }
+    //Save Post
+    let post = req.post
+    post = _.extend(post, fields)
+    post.updated = Date.now()
+    if (files.photo){
+      post.photo.data = fs.readFileSync(files.photo.path)
+      post.photo.contentType = files.photo.type
+    }
+    post.save((err, result) => {
+      if (err){
+        return res.status(400).json({
+          error: err
+        })
+      }
+      res.json(post)
+    })
+  })
+}
+
+exports.deletePost = (req, res) => {
+  let post = req.post
+  post.remove((err, post) => {
+    if (err){
+      return res.status(400).json({
+        error: err 
+      })
+    }
+    res.json({
+      message: 'Post Deleted Successfully'
+    })
+  })
+}
+
+exports.photo = (req, res, next) => {
+  res.set('Content-Type', req.post.photo.contentType)
+  return res.send(req.post.photo.data)
+}
+
+exports.singlePost = (req, res) => {
+  return res.json(req.post)
+}
+
+exports.like = (req, res) => {
+  Post.findByIdAndUpdate(req.body.postId, {
+    $push: {likes: req.body.userId}
+  },
+  {new: true}).exec(
+    (err, result) => {
+      if (err){
+        return res.status(400).json({
+          error: err
+        })
+      }else{
+        res.json(result)
+      }
+    }
+  )
+}
