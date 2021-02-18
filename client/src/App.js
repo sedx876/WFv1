@@ -1,17 +1,13 @@
 import React from 'react'
-import './index.css'
-import Navbar from './components/Navbar'
-import Home from './components/Home'
-import Footer from './components/Footer'
-import { Typography } from '@material-ui/core'
-
+import { BrowserRouter as Router } from 'react-router-dom'
+import MainRouter from './MainRouter'
 
 const App = () => {
   return (
     <div>
-      <Navbar/>
-      <Home/>
-      <Footer/>
+      <Router>
+        <MainRouter/>
+      </Router>
     </div>
   )
 }
