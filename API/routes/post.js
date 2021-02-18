@@ -3,7 +3,7 @@ const {
   getPosts,
   createPost,
   postsByUser,
-  postsById,
+  postById,
   isPoster,
   updatePost,
   deletePost,
