@@ -1,0 +1,88 @@
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+//import { signup } from '../auth/index'
+
+class Signup extends Component {
+
+  constructor(){
+    super()
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      error: '',
+      open: false
+    }
+  }
+
+  clickSubmit = event => {
+    event.preventDefault()
+    const { name, email, password } = this.state 
+    const user = {
+      name,
+      email,
+      password
+    }
+    console.table(user)
+    signup(user)
+    .then(data => {
+      if(data.error) this.setState({ error: data.error })
+      else this.setState({
+        error: '',
+        name: '',
+        email: '',
+        password: '',
+        open: true
+      })
+    })
+  }
+
+  handleChange = name => event => {
+    this.setState({ error: '' })
+    this.setState({ [name]: event.target.value })
+  }
+
+  signupForm = (name, email, password) => (
+    <form>
+      <div className='form-group'>
+        <label className='text-muted'>Name</label>
+        <input 
+          onChange={this.handleChange('name')} 
+          type='text' 
+          className='form-control'
+          value={name}
+        />
+      </div>
+      <div className='form-group'>
+        <label className='text-muted'>Email</label>
+        <input 
+          onChange={this.handleChange('email')} 
+          type='text' 
+          className='form-control'
+          value={email}
+        />
+      </div>
+      <div className='form-group'>
+        <label className='text-muted'>Password</label>
+        <input 
+          onChange={this.handleChange('password')} 
+          type='password' 
+          className='form-control'
+          value={password}
+        />
+      </div>
+      <button onClick={this.clickSubmit} 
+        className='btn btn-raised btn-outline-primary'>Submit</button>
+    </form>
+  )
+
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+}
+
+export default Signup
