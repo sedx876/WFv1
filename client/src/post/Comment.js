@@ -110,7 +110,7 @@ class Comment extends Component {
           <div key={i}>
             <div>
               <Link to={`/user/${comment.postedBy._id}`}>
-                <img style{{ borderRadius: '50%', border: '1px solid black' }}
+                <img style={{ borderRadius: '50%', border: '1px solid black' }}
                 className="float-left mr-2"
                 height="30px"
                 width="30px"
