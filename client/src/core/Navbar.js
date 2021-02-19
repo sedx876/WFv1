@@ -1,15 +1,22 @@
 import React from 'react'
+import { Link, withRouter } from 'react-router-dom'
 
-const Navbar = () => {
+
+const isActive = (history, path) => {
+  if (history.location.pathname === path) return { color: '#ff9900' }
+  else return { color: '#ffffff' }
+}
+
+const Navbar = ({history}) => {
   return (
     <div>
       <nav className='light-green darken-4'>
         <div className="nav-wrapper">
 
-          <a href="#" 
+          <Link style={isActive(history, '/')} to="/"
             className="brand-logo light-green-text text-accent-1">
               WeedFeed
-            </a>
+            </Link>
 
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           
@@ -20,15 +27,15 @@ const Navbar = () => {
           </li>
 
           <li>
-            <a className='light-green-text text-accent-1'>
-              Log In
-            </a>
+            <Link className='light-green-text text-accent-1' style={isActive(history, '/signin')} to='/signin'>
+              Sign In
+            </Link>
           </li>
 
           <li>
-            <a className='light-green-text text-accent-1'>
+            <Link className='light-green-text text-accent-1' style={isActive(history, '/signup')} to='/signup'>
               Create Account
-            </a>
+            </Link>
           </li>
 
           <li>
@@ -68,4 +75,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default withRouter(Navbar)

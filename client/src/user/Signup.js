@@ -91,7 +91,7 @@ class Signup extends Component {
     const { name, email, password, error, open } = this.state 
     return (
       <div className='container'>
-        <h2 className='mt-5 mb-5'>SignUp</h2>
+        <h2>SignUp</h2>
         <div className='alert alert-danger'
           style={{ display: error ? '' : 'none'}}>
           {error}
