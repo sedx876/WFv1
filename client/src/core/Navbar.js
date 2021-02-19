@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { isAuthenticated } from '../auth'
 
 
 const isActive = (history, path) => {
@@ -57,9 +58,11 @@ const Navbar = ({history}) => {
           </li>
 
           <li>
-            <a className='light-green-text text-accent-1'>
+            <Link className='light-green-text text-accent-1'
+            to='/profile'
+            style={(isActive(history, '/profile'))}>
               Profile
-            </a>
+            </Link>
           </li>
 
           <li>
