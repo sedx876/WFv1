@@ -10,66 +10,67 @@ exports.postById = (req, res, next, id) => {
     .populate('postedBy', '_id name role')
     .select('_id title body created likes comments photo')
     .exec((err, post) => {
-      if (err || !post){
-        return res.status(400).json({
-          error: err
-        })
-      }
-      req.post = post;
-      next()
+    if (err || !post) {
+      return res.status(400).json({
+        error: err
+    })
+  }
+    req.post = post;
+      next();
     })
 }
 
+// with pagination
 exports.getPosts = async (req, res) => {
-  //Get current page from req.query or use default page 1
+  // get current page from req.query or use default value of 1
   const currentPage = req.query.page || 1
-  //Return 3 posts per page
+  // return 3 posts per page
   const perPage = 6
   let totalItems
-  const posts = await Post.find()
-  //countDocuments() gives you the total count of posts
-  .countDocuments()
-  .then(count => {
-    totalItems = count 
+    const posts = await Post.find()
+    // countDocuments() gives you total count of posts
+    .countDocuments()
+    .then(count => {
+    totalItems = count
       return Post.find()
-      .skip((currentPage - 1) * perPage)
-      .populate('comments', 'text created')
-      .populate('comments.postedBy', '_id name')
-      .populate('postedBy', '_id name')
-      .select('_id title body created likes')
-      .limit(perPage)
-      .sort({ created: -1 })
-  })
-  .then(posts => {
-    res.status(200).json(posts)
-  })
-  .catch(err => console.table(err))
+        .skip((currentPage - 1) * perPage)
+        .populate('comments', 'text created')
+        .populate('comments.postedBy', '_id name')
+        .populate('postedBy', '_id name')
+        .select('_id title body created likes')
+        .limit(perPage)
+        .sort({ created: -1 });
+        })
+        .then(posts => {
+            res.status(200).json(posts)
+        })
+        .catch(err => console.log(err))
 }
 
 exports.createPost = (req, res, next) => {
-  let form = new formidable.IncomingForm()
-  form.keepExtensions = true 
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
   form.parse(req, (err, fields, files) => {
     if (err) {
-      return res.status(400).json({
-        error: 'Image Could Not Be Uploaded'
-      })
-    }
-    let post = new Post(fields)
-    req.profile.hashed_password = undefined 
-    req.profile.salt = undefined 
-    post.postedBy = req.profile 
-  if (files.photo){
-    post.photo.data = fs.readFileSync(files.photo.path)
-    post.photo.contentType = files.photo.type
+    return res.status(400).json({
+      error: 'Image could not be uploaded'
+    })
   }
-    post.save((err, result) => {
-      if (err){
-        return res.status(400).json({
-          error: err
+    let post = new Post(fields)
+      req.profile.hashed_password = undefined
+      req.profile.salt = undefined
+      post.postedBy = req.profile
+    if (files.photo) {
+      post.photo.data = fs.readFileSync(files.photo.path)
+      post.photo.contentType = files.photo.type
+    }
+      post.save((err, result) => {
+        if (err) {
+          return res.status(400).json({
+            error: err
         })
       }
-      res.json(result)
+        res.json(result)
     })
   })
 }
@@ -81,66 +82,66 @@ exports.postsByUser = (req, res) => {
     .sort('_created')
     .exec((err, posts) => {
       if (err) {
-        return res.status(400).json({
-          error: err
-        })
-      }
+      return res.status(400).json({
+        error: err
+      })
+    }
       res.json(posts)
-    })
+  })
 }
 
 exports.isPoster = (req, res, next) => {
-  let sameUser = req.post && req.auth && req.post.postedBy._id == req.auth._id 
+  let sameUser = req.post && req.auth && req.post.postedBy._id == req.auth._id
   let adminUser = req.post && req.auth && req.auth.role === 'admin'
-  console.table("req.post ", req.post, " req.auth ", req.auth)
-  console.table("SAMEUSER: ", sameUser, " ADMINUSER: ", adminUser)
-  let isPoster = sameUser || adminUser
-  if (!isPoster){
-    return res.status(403).json({
-      error: 'User Is Not Authorized'
-    })
-  }
-  next()
-}
-
-exports.updatePost = (req, res, next)=> {
-  let form = new formidable.IncomingForm()
-  form.keepExtensions = true 
-  form.parse(req, (err, fields, files) => {
-    if (err){
-      return res.status(400).json({
-        error: "Photo Could Not Be Uploaded"
+    console.log("req.post ", req.post, " req.auth ", req.auth)
+    console.log("SAMEUSER: ", sameUser, " ADMINUSER: ", adminUser)
+    let isPoster = sameUser || adminUser;
+    if (!isPoster) {
+      return res.status(403).json({
+        error: 'User is not authorized'
       })
     }
-    //Save Post
-    let post = req.post
-    post = _.extend(post, fields)
-    post.updated = Date.now()
-    if (files.photo){
-      post.photo.data = fs.readFileSync(files.photo.path)
-      post.photo.contentType = files.photo.type
-    }
+    next()
+}
+
+exports.updatePost = (req, res, next) => {
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      return res.status(400).json({
+        error: 'Photo could not be uploaded'
+    })
+  }
+  // save post
+  let post = req.post
+  post = _.extend(post, fields)
+  post.updated = Date.now()
+  if (files.photo) {
+    post.photo.data = fs.readFileSync(files.photo.path)
+    post.photo.contentType = files.photo.type
+  }
     post.save((err, result) => {
-      if (err){
+      if (err) {
         return res.status(400).json({
           error: err
-        })
-      }
+      })
+    }
       res.json(post)
     })
   })
 }
 
 exports.deletePost = (req, res) => {
-  let post = req.post
+  let post = req.post;
   post.remove((err, post) => {
-    if (err){
+    if (err) {
       return res.status(400).json({
-        error: err 
-      })
+        error: err
+    })
     }
-    res.json({
-      message: 'Post Deleted Successfully'
+			res.json({
+        message: 'Post deleted successfully'
     })
   })
 }
@@ -155,54 +156,48 @@ exports.singlePost = (req, res) => {
 }
 
 exports.like = (req, res) => {
-  Post.findByIdAndUpdate(req.body.postId, {
-    $push: {likes: req.body.userId}
-  },
-  {new: true}).exec(
+  Post.findByIdAndUpdate(req.body.postId, 
+		{ $push: { likes: req.body.userId } }, { new: true }).exec(
     (err, result) => {
-      if (err){
+      if (err) {
         return res.status(400).json({
           error: err
-        })
-      }else{
-        res.json(result)
+      })
+      } else {
+          res.json(result)
       }
     }
   )
 }
 
 exports.unlike = (req, res) => {
-  Post.findByIdAndUpdate(req.body.postId, { 
-    $pull: {likes: req.body.userId}
-  },
-  {new: true}).exec(
+  Post.findByIdAndUpdate(req.body.postId, { $pull: { likes: req.body.userId } }, 
+		{ new: true }).exec(
     (err, result) => {
-      if (err){
+      if (err) {
         return res.status(400).json({
           error: err
-        })
-      }else{
-        res.json(result)
+      })
+        } else {
+            res.json(result);
+        }
       }
-    }
-  )
+    )
 }
 
 exports.comment = (req, res) => {
-  let comment = req.body.comment 
-  comment.postedBy = req.body.userId 
-  Post.findByIdAndUpdate(req.body.postId,
-    {$push: {comments: comment}},
-    {new: true})
+  let comment = req.body.comment;
+  comment.postedBy = req.body.userId;
+  Post.findByIdAndUpdate(req.body.postId, { $push: { comments: comment } }, { new: true })
     .populate('comments.postedBy', '_id name')
     .populate('postedBy', '_id name')
     .exec((err, result) => {
-      if (err){
+      if (err) {
         return res.status(400).json({
           error: err
-        })
-      }else{
-        res.json(result)
+      })
+      } else {
+          res.json(result)
       }
     })
 }
@@ -225,30 +220,30 @@ exports.uncomment = (req, res) => {
 }
 
 exports.updateComment = (req, res) => {
-  let comment = req.body.comment;
-  Post.findByIdAndUpdate(req.body.postId, 
-    { $pull: { comments: { _id: comment._id } } }).exec((err, result) => {
-      if (err) {
-        return res.status(400).json({
-          error: err
-      })
-      } else {
-          Post.findByIdAndUpdate(
-            req.body.postId,
-            { $push: { comments: comment, updated: new Date() } },
-            { new: true }
-      )
-        .populate('comments.postedBy', '_id name')
-        .populate('postedBy', '_id name')
-        .exec((err, result) => {
-          if (err) {
-            return res.status(400).json({
-              error: err
-          })
-            } else {
-                res.json(result)
-            }
-          })
-      }
-  })
+    let comment = req.body.comment;
+    Post.findByIdAndUpdate(req.body.postId, 
+			{ $pull: { comments: { _id: comment._id } } }).exec((err, result) => {
+        if (err) {
+          return res.status(400).json({
+            error: err
+        })
+        } else {
+            Post.findByIdAndUpdate(
+              req.body.postId,
+              { $push: { comments: comment, updated: new Date() } },
+              { new: true }
+        )
+          .populate('comments.postedBy', '_id name')
+          .populate('postedBy', '_id name')
+          .exec((err, result) => {
+            if (err) {
+              return res.status(400).json({
+                error: err
+            })
+              } else {
+                  res.json(result)
+              }
+            })
+        }
+    })
 }

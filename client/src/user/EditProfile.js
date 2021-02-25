@@ -1,82 +1,83 @@
-import React, { Component } from 'react'
-import { isAuthenticated } from '../auth'
-import { read, update, updateUser } from './apiUser'
-import { Redirect } from 'react-router-dom'
-import DefaultProfile from '../images/avatar.jpg'
-
+import React, { Component } from "react"
+import { isAuthenticated } from "../auth"
+import { read, update, updateUser } from "./apiUser"
+import { Redirect } from "react-router-dom"
+import DefaultProfile from "../images/avatar.jpg"
 
 class EditProfile extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
-      id: '',
-      name: '',
-      email: '',
-      password: '',
+      id: "",
+      name: "",
+      email: "",
+      password: "",
       redirectToProfile: false,
-      error: '',
+      error: "",
       fileSize: 0,
       loading: false,
-      about: ''
+      about: ""
     }
   }
 
   init = userId => {
-    const token = isAuthenticated().token
+    const token = isAuthenticated().token;
     read(userId, token).then(data => {
-      if (data.error){
+      if (data.error) {
         this.setState({ redirectToProfile: true })
-      }else{
+      } else {
         this.setState({
           id: data._id,
           name: data.name,
           email: data.email,
-          error: '',
+          error: "",
           about: data.about
         })
       }
     })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.userData = new FormData()
-    const userId = this.props.match.params.userId 
+    const userId = this.props.match.params.userId
     this.init(userId)
   }
 
   isValid = () => {
-    const { name, email, password, fileSize } = this.state 
-    if (fileSize > 10000000){
+    const { name, email, password, fileSize } = this.state
+    if (fileSize > 1000000) {
       this.setState({
-        error: 'File Size Should Be Less Than 100kb',
+        error: "File size should be less than 100kb",
         loading: false
       })
       return false
     }
-    if (name.length === 0){
-      this.setState({ error: 'Name is Required', loading: false })
+    if (name.length === 0) {
+      this.setState({ error: "Name is required", loading: false })
+      return false
     }
-    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+    // email@domain.com
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       this.setState({
-        error: 'A Valid Email is Required',
-        loading: false
-      })
-      return false 
-    }
-    if (password.length >= 1 && password.length <= 5){
-      this.setState({
-        error: 'Password Must Be At Least 6 Characters Long',
+        error: "A valid Email is required",
         loading: false
       })
       return false
     }
-    return true 
+    if (password.length >= 1 && password.length <= 5) {
+      this.setState({
+        error: "Password must be at least 6 characters long",
+        loading: false
+      });
+      return false
+    }
+    return true
   }
 
   handleChange = name => event => {
-    this.setState({ error: '' })
-    const value = name === 'photo' ? event.target.files[0] : event.target.value
-    const fileSize = name === 'photo' ? event.target.files[0].size : 0 
+    this.setState({ error: "" })
+    const value = name === "photo" ? event.target.files[0] : event.target.value
+    const fileSize = name === "photo" ? event.target.files[0].size : 0
     this.userData.set(name, value)
     this.setState({ [name]: value, fileSize })
   }
@@ -84,17 +85,17 @@ class EditProfile extends Component {
   clickSubmit = event => {
     event.preventDefault()
     this.setState({ loading: true })
-    if (this.isValid()){
+    if (this.isValid()) {
       const userId = this.props.match.params.userId
       const token = isAuthenticated().token
       update(userId, token, this.userData).then(data => {
-        if (data.error){
+        if (data.error) {
           this.setState({ error: data.error })
-        } else if (isAuthenticated().user.role === 'admin'){
+        } else if (isAuthenticated().user.role === "admin") {
           this.setState({
             redirectToProfile: true
           })
-        }else{
+        } else {
           updateUser(data, () => {
             this.setState({
               redirectToProfile: true
@@ -164,7 +165,7 @@ class EditProfile extends Component {
     </form>
   )
 
-  render() {
+  render(){
     const {
       id,
       name,
@@ -186,8 +187,8 @@ class EditProfile extends Component {
         }/user/photo/${id}?${new Date().getTime()}`
       : DefaultProfile
 
-    return (
-      <div className='container'>
+    return(
+    <div className='container'>
       <h2 className='mt-5 mb-5 text-primary text-center'>
         <strong>Update Profile</strong>
       </h2>

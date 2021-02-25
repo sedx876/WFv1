@@ -28,7 +28,6 @@ mongoose.connection.on('error', err => {
 const postRoutes = require('./routes/post')
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
-
 // apiDocs
 app.get('/api', (req, res) => {
   fs.readFile('docs/apiDocs.json', (err, data) => {
@@ -62,7 +61,7 @@ const morganMiddleware = morgan(function (tokens, req, res) {
 app.use(morganMiddleware)
 app.use(bodyParser.json())
 app.use(cookieParser())
-//app.use(expressValidator())
+app.use(expressValidator())
 app.use(cors())
 app.use('/api', postRoutes)
 app.use('/api', authRoutes)
@@ -75,5 +74,5 @@ app.use(function(err, req, res, next) {
 
 const port = process.env.PORT || 8080
 
-app.listen(port, () =>
-{console.table(`WEEDFEED API is listening on port ${port}`.brightCyan.inverse)})
+app.listen(port, () => 
+{console.log(`NODE API is listening on port ${port}`.brightCyan.inverse)})

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { isAuthenticated } from '../auth'
+import { isAuthenticated, signout } from '../auth'
 
 
 const isActive = (history, path) => {
@@ -22,12 +22,15 @@ const Navbar = ({history}) => {
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           
           <li>
-            <a className='light-green-text text-accent-1 active'>
+            <Link className='light-green-text text-accent-1 active' style={isActive(history, '/users')} to="/users">
               Members Directory
-            </a>
+            </Link>
           </li>
 
-          <li>
+
+          {!isAuthenticated() && (
+            <>
+            <li>
             <Link className='light-green-text text-accent-1' style={isActive(history, '/signin')} to='/signin'>
               Sign In
             </Link>
@@ -38,18 +41,28 @@ const Navbar = ({history}) => {
               Create Account
             </Link>
           </li>
+          </>
+          )}
 
-          <li>
-            <a className='light-green-text text-accent-1'>
-              Find Member
-            </a>
+          {isAuthenticated() &&
+          <>
+          <li className="nav-item">
+      <Link to={`/findpeople`} style={isActive(history, `/findpeople`)} className="nav-link light-green-text text-accent-1 active">
+        Find People
+      </Link>
+    </li>
+
+    <li>
+            <Link className='light-green-text text-accent-1 active' style={isActive(history, '/postfeed')} to="/postfeed">
+              Post Feed
+            </Link>
           </li>
 
-          <li>
-            <a className='light-green-text text-accent-1'>
-              Create Post
-            </a>
-          </li>
+          <li className="nav-item light-green-text text-accent-1 active">
+      <Link to={`/post/create`} style={isActive(history, `/post/create`)} className="nav-link light-green-text text-accent-1 active">
+        Create Post
+      </Link>
+    </li>
 
           <li>
             <a className='light-green-text text-accent-1'>
@@ -57,19 +70,23 @@ const Navbar = ({history}) => {
             </a>
           </li>
 
-          <li>
-            <Link className='light-green-text text-accent-1'
-            to='/profile'
-            style={(isActive(history, '/profile'))}>
-              Profile
-            </Link>
-          </li>
+          <li className="nav-item">
+    <span className="nav-link light-green-text text-accent-1 active">
+      <Link to={`/user/${isAuthenticated().user._id}`}
+      style={(isActive(history, `/user/${isAuthenticated().user._id}`))}>
+      {`${isAuthenticated().user.name} Profile`} 
+      </Link>
+    </span>
+  </li>
 
-          <li>
-            <a className='light-green-text text-accent-1'>
-              Log Out
-            </a>
-          </li>
+          <li className="nav-item">
+    <span className="nav-link light-green-text text-accent-1 active" 
+      style={{ cursor: 'pointer', color: '#fff' }} 
+      onClick={() => signout(() => history.push('/'))}>
+      Log Out 
+    </span>
+  </li>
+          </>}
           
         </ul>
         </div>

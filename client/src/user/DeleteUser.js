@@ -37,7 +37,7 @@ class DeleteUser extends Component {
     return (
       <button
         onClick={this.deleteConfirmed}
-        className='btn'>
+        className='btn waves-effect red darken-4 red-text text-accent-1'>
         Delete Profile
       </button>
     )

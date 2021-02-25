@@ -1,42 +1,32 @@
 const express = require('express')
-const {
-  signup,
-  signin,
-  signout,
-  forgotPassword,
-  resetPassword,
-  socialLogin
-} = require('../controllers/auth')
+const { signup, 
+	signin, 
+	signout, 
+	forgotPassword, 
+	resetPassword, 
+	socialLogin } = require('../controllers/auth')
 
-const {
-  userSignupValidator,
-  userSigninValidator,
-  passwordResetValidator
-} = require('../validator')
+// import password reset validator
+const { userSignupValidator, 
+	userSigninValidator, 
+	passwordResetValidator } = require('../validator')
 
 const { userById } = require('../controllers/user')
 
 const router = express.Router()
 
-router 
-  .post('/signup', userSignupValidator, signup)
+router.post('/signup', userSignupValidator, signup)
+router.post('/signin', userSigninValidator, signin)
+router.get('/signout', signout)
 
-router
-  .post('/signin', userSigninValidator, signin)
+// password forgot and reset routes
+router.put('/forgot-password', forgotPassword)
+router.put('/reset-password', passwordResetValidator, resetPassword)
 
-router 
-  .get('/signout', signout)
+// then use this route for social login
+router.post('/social-login', socialLogin)
 
-router
-  .put('/forgot-password', forgotPassword)
+// any route containing :userId, our app will first execute userByID()
+router.param('userId', userById)
 
-router
-  .put('/reset-password', passwordResetValidator, resetPassword)
-
-router 
-  .post('/social-login', socialLogin)
-
-router
-  .param('userId', userById)
-
-module.exports = router 
+module.exports = router

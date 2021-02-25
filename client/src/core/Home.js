@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../images/Logo.png'
 
+
 const Home = () => {
   return (
       <div className="row">
@@ -62,6 +63,8 @@ const Home = () => {
             </div>
         </div>
       </div>
+    </div>
+    <div className="container">
     </div>
   </div>
   )
