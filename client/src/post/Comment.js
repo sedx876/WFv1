@@ -90,7 +90,7 @@ class Comment extends Component {
               className='form-control'
               placeholder='Leave a Comment...'
             />
-            <button className='btn btn-raised'>
+            <button className='btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1'>
               Post Comment
             </button>
           </div>

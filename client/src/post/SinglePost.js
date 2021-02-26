@@ -100,14 +100,14 @@ class SinglePost extends Component {
         }}
       />
         {like ? (
-          <h3 onClick={this.likeToggle}>
+          <h4 onClick={this.likeToggle}>
             <i
               className="fa fa-thumbs-up text-success bg-light"
               style={{ padding: '10px', borderRadius: '50%' }}
           />
 					{' '}
           {likes} Like
-          </h3>
+          </h4>
         ) : (
         <h3 onClick={this.likeToggle}>
           <i
@@ -125,15 +125,15 @@ class SinglePost extends Component {
           on {new Date(post.created).toDateString()}
         </p>
         <div className="d-inline-block">
-          <Link to={`/`} className="btn btn-raised btn-primary btn-sm mr-5">
+          <Link to={`/`} className="btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1">
             Back to posts
           </Link>
           {isAuthenticated().user && isAuthenticated().user._id === post.postedBy._id && (
             <>
-              <Link to={`/post/edit/${post._id}`} className="btn btn-raised btn-warning btn-sm mr-5">
+              <Link to={`/post/edit/${post._id}`} className="btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1">
                 Update Post
               </Link>
-              <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger">
+              <button onClick={this.deleteConfirmed} className="btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1">
                 Delete Post
               </button>
             </>
@@ -146,11 +146,11 @@ class SinglePost extends Component {
                   <p className="mb-2 text-danger">Edit/Delete as an Admin</p>
                   <Link
                     to={`/post/edit/${post._id}`}
-                    className="btn btn-raised btn-warning btn-sm mr-5"
+                    className="btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1"
                   >
                     Update Post
                   </Link>
-                    <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger">
+                    <button onClick={this.deleteConfirmed} className="btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1">
                       Delete Post
                     </button>
               </div>

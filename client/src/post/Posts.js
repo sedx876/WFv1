@@ -107,7 +107,7 @@ class Posts extends Component {
           {this.renderPosts(posts)}
             {page > 1 ? (
               <button
-                className="btn waves-effect light-green darken-4 light-green-text text-accent-1"
+                className="btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1"
                 onClick={() => this.loadLess(1)}
               >
                 Previous ({this.state.page - 1})
