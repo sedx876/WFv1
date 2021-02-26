@@ -38,7 +38,7 @@ class Posts extends Component {
 
   renderPosts = posts => {
     return (
-      <div className="row">
+      <div class="row">
         {posts.map((post, i) => {
           const posterId = post.postedBy
             ? `/user/${post.postedBy._id}`
@@ -46,62 +46,68 @@ class Posts extends Component {
           const posterName = post.postedBy
             ? post.postedBy.name
             : " Unknown";
-            return (
-              <div className="card col-md-4 mb-2" key={i}>
-                <div className="card-body">
-                  <img
-                    src={`${
-                      process.env.REACT_APP_API_URL
-                    }/post/photo/${post._id}`}
-											alt={post.title}
-											onError={i =>
-                    (i.target.src = `${DefaultPost}`)
-                    }
-                    className="img-thunbnail mb-3"
-                    style={{ height: "200px", width: "100%" }}
-                  />
-                    <h5 className="card-title">{post.title}</h5>
-                    <p className="card-text">
-                      {post.body.substring(0, 100)}
-                    </p>
-                    <br />
-                    <p className="font-italic mark">
-                      Posted by{" "}
-                    <Link to={`${posterId}`}>
-                      {posterName}{" "}
-                    </Link>
-                      on {new Date(post.created).toDateString()}
-                    </p>
-                    <Link
-                      to={`/post/${post._id}`}
-                      className="btn btn-raised btn-primary btn-sm"
-                    >
-                      Read more
-                    </Link>
-                  </div>
-                </div>
-              )
-            })}
+          return(
+      <div class="col s6 m4">
+        <div class="card">
+          <div class="card-image valign-wrapper">
+            <img  src={`${
+              process.env.REACT_APP_API_URL
+              }/post/photo/${post._id}`}
+              alt={post.title}
+              onError={i =>
+              (i.target.src = `${DefaultPost}`)
+              }
+              className="img-thunbnail mb-3"
+              style={{ height: "150px", width: "200px", marginLeft: '10px'}}
+            /> 
           </div>
+          <div class="card-content">
+          <p className="card-text">
+          <span class="card-title black-text z-depth-3"><strong>{post.title}</strong></span>
+          <hr/>
+            {post.body.substring(0, 100)}
+          </p>
+            <br/>
+          <p className="">
+          Posted by{" "}
+          <Link to={`${posterId}`}>
+            {posterName}{" "}
+          </Link>
+            on {new Date(post.created).toDateString()}
+          </p>
+          </div>
+          <div class="card-action">
+          <Link
+            to={`/post/${post._id}`}
+            className="btn waves-effect light-green darken-4 light-green-text text-accent-1"
+          >
+          Read more
+          </Link>
+          </div>
+        </div>
+      </div>
+      )
+    })}
+    </div>
         )
     }
 
   render() {
     const { posts, page } = this.state 
     return (
-      <div className="container">
+      <div className="container" style={{ marginBottom: '100px'}}>
         <h2 className="mt-5 mb-5">
           {!posts.length ? 
           "You have reached the end of the posts!!" 
           : 
-          <h3 className='mt-5 mb-5 text-primary text-center'>
+          <h3 className='center-align'>
             <strong>Recent Posts</strong>
           </h3>}
         </h2>
           {this.renderPosts(posts)}
             {page > 1 ? (
               <button
-                className="btn btn-raised btn-outline-warning mr-5 mt-5 mb-5"
+                className="btn waves-effect light-green darken-4 light-green-text text-accent-1"
                 onClick={() => this.loadLess(1)}
               >
                 Previous ({this.state.page - 1})
@@ -111,7 +117,7 @@ class Posts extends Component {
               )}
                 {posts.length ? (
                   <button
-                    className="btn btn-raised btn-outline-success mt-5 mb-5"
+                    className="btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1 mb-3 right"
                     onClick={() => this.loadMore(1)}
                   >
                     Next ({page + 1})
