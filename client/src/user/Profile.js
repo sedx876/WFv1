@@ -85,95 +85,6 @@ class Profile extends Component {
         }?${new Date().getTime()}`
       : DefaultProfile
     return (
-      // <div className='container'>
-      //   <h2 className='center-align light-green-text text-accent-5'>
-      //     <strong>WeedFeed Profile</strong>
-      //   </h2>
-      //   <div className='row'>
-      //   <div className='col-md-6'>
-      //   <div className='card center-align light-green-text text-accent-5'
-      //     style={{width: '18rem'}}>
-      //   <p className='center-align'><strong>Hello</strong> {user.name}</p>
-      //   <img
-      //     style={{ height: "250px", width: "auto" }}
-      //     className="img-thumbnail center-align"
-      //     src={photoUrl}
-      //     onError={i => (i.target.src = `${DefaultProfile}`)}
-      //     alt={user.name}
-      //   />
-      //   <p className='pt-3'><strong>Email:</strong> {user.email}</p>
-      //   <p>
-      //     <strong>Joined: </strong> 
-      //     {`${new Date(user.created).toDateString()}`}
-      //   </p>
-      //   </div>
-      //   </div>
-
-      //   {isAuthenticated().user &&
-      //       isAuthenticated().user._id === user._id ? (
-      //         <div>
-      //           <Link
-      //             className="btn waves-effect light-green darken-4 light-green-text text-accent-1"
-      //             to={`/post/create`}
-      //           >
-      //             Create Post
-      //           </Link>
-      //           <Link
-      //             className="btn waves-effect amber darken-4 amber-text text-accent-1"
-      //             to={`/user/edit/${user._id}`}
-      //           >
-      //             Edit Profile
-      //           </Link>
-      //           <DeleteUser className='btn waves-effect red darken-4 red-text text-accent-1' userId={user._id} />
-      //           <br/>
-      //           <div className='col-md-4'>
-      //           <div className='col-md-4'>
-      //           <p className="card"
-      //           style={{width: '30rem'}}>
-      //           <h5 style={{textDecoration: 'underline'}}><strong>About Me:</strong></h5>
-      //           <strong>{user.about}</strong></p>
-      //           </div>
-      //           </div>
-      //         </div>
-      //       ) : (
-      //         <FollowProfileButton
-      //           following={this.state.following}
-      //           onButtonClick={this.clickFollowButton}
-      //         />
-      //       )}
-      //   <div className='col-md-6'>
-      //     {isAuthenticated().user && 
-      //     isAuthenticated().user.role === "admin" && (
-      //       <div class="card mt-5">
-      //         <div className="card-body">
-      //           <h5 className="card-title">Admin</h5>
-      //           <p className="mb-2 text-danger">
-      //             Edit/Delete as an Admin
-      //           </p>
-      //           <Link
-      //             className="btn btn-raised btn-success mr-5"
-      //             to={`/user/edit/${user._id}`}
-      //           >
-      //             Edit Profile
-      //           </Link>
-      //           <DeleteUser />
-      //         </div>
-      //       </div>
-      //       )}
-      //   </div>
-      //   </div>
-      //   <div className='row'>
-      //     <div className='col-md-12'>
-      //       <div className='card lead text-center bg-light mb-5 border-primary p-2 text-primary'>
-      //       <ProfileTabs
-      //         followers={user.followers}
-      //         following={user.following}
-      //         posts={posts}
-      //       />
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
       <div>
         <h2 className='center-align light-green-text text-accent-5'>
           <strong>Hello {user.name}</strong>
@@ -182,7 +93,7 @@ class Profile extends Component {
 
         <div class="card-image center-align light-green-text text-accent-5">
           <img
-          style={{ height: "250px", width: "auto" }}
+          style={{ height: "250px", width: "250px" }}
           className="img-thumbnail center-align"
           src={`${process.env.REACT_APP_API_URL}/user/photo/${
           user._id

@@ -46,11 +46,11 @@ const Navbar = ({history}) => {
 
           {isAuthenticated() &&
           <>
-          <li className="nav-item">
+          {/* <li className="nav-item">
       <Link to={`/findpeople`} style={isActive(history, `/findpeople`)} className="nav-link light-green-text text-accent-1 active">
         Find People
       </Link>
-    </li>
+    </li> */}
 
     <li>
             <Link className='light-green-text text-accent-1 active' style={isActive(history, '/postfeed')} to="/postfeed">
