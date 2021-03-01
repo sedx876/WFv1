@@ -80,21 +80,23 @@ class Comment extends Component {
     const { error } = this.state
     return (
       <div>
-        <h2>Leave a Comment</h2>
+        <h3>Leave A Comment</h3>
         <form onSubmit={this.addComment}>
-          <div className='form-group'>
-            <input
-              type='text'
-              classNameonChange={this.handleChange}
-              value={this.state.text}
-              className='form-control'
-              placeholder='Leave a Comment...'
-            />
-            <button className='btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1'>
+          <div>
+            <div className='input-field col s6'>
+              <input 
+                type='text'
+                onChange={this.handleChange}
+                value={this.state.text}
+                />
+                <label for='comment'>Comment</label>
+                <button className="btn waves-effect waves-light btn light-green darken-4 light-green-text text-accent-1">
               Post Comment
             </button>
+            </div>
           </div>
         </form>
+        <br/>
 
       <div className='alert alert-danger'
         style={{ display: error ? '' : 'none'}}>
@@ -124,8 +126,8 @@ class Comment extends Component {
               />
               </Link>
               <div>
-              <p className="lead">{comment.text}</p>
-              <p className="font-italic mark">
+              <h5 className="lead">{comment.text}</h5>
+              <h6 className="">
                 Posted by{" "}
               <Link
                 to={`/user/${comment.postedBy._id}`}
@@ -137,19 +139,21 @@ class Comment extends Component {
                   comment.created
                 ).toDateString()}
                 <span>
+                  <br/>
                   {isAuthenticated().user &&
                     isAuthenticated().user._id ===
                     comment.postedBy._id && (
                 <>
-                  <button className='btn btn-raised btn-outline-danger btn-sm float-right mr-1'
+                  <button className='btn waves-effect waves-light btn-small light-green darken-4 light-green-text text-accent-1'
                     onClick={() =>
                     this.deleteConfirmed(comment)}>
-                    Remove
+                    Remove Comment
                   </button>
+                  <hr/>
                 </>
                 )}
                 </span>
-              </p>
+              </h6>
               </div>
             </div>
           </div>
