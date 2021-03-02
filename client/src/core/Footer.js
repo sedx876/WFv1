@@ -1,7 +1,8 @@
 import React from 'react'
+import { NavLink, withRouter } from 'react-router-dom'
 import Logo from '../images/Logo.png'
 
-const Footer = () => {
+const Footer = ({history}) => {
   return (
     <div>
       <footer className="page-footer light-green darken-4">
@@ -10,7 +11,11 @@ const Footer = () => {
           &copy;2021  Weed<span><img className='f-logo' src={Logo}/></span>Feed 
           <h6 className='light-green-text text-accent-1 right'>|Contact Us|</h6>
           <h6 className='light-green-text text-accent-1 right'>|About|</h6>
-          <h6 className='light-green-text text-accent-1 right'>|Links|</h6>
+          {/* <h6 className='light-green-text text-accent-1 right'>|Links|</h6> */}
+
+          <NavLink className='light-green-text text-accent-1 right' to='/links'>
+            <h6 className='light-green-text text-accent-1 right'>|Links|</h6>
+          </NavLink>
         </h6>
         
         </div>
@@ -19,4 +24,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default withRouter(Footer)

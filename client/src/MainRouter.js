@@ -17,6 +17,7 @@ import ResetPassword from "./user/ResetPassword"
 import Admin from "./admin/Admin"
 import Footer from './core/Footer'
 import Posts from "./post/Posts"
+import Links from './core/Links'
 
 const MainRouter = () => {
   return (
@@ -37,6 +38,7 @@ const MainRouter = () => {
         <PrivateRoute exact path="/admin" component={Admin} />
         <Route exact path="/reset-password/:resetPasswordToken" component={ResetPassword}/>
         <Route exact path='/postfeed' component={Posts}/>
+        <Route exact path='/links' component={Links}/>
       </Switch>
       <Footer/>
     </div>
