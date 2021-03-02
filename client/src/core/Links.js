@@ -20,11 +20,28 @@ import zenpype from '../images/zenpype.jpg'
 import mmj from '../images/mmj.jpg'
 import cannatuts from '../images/cannatuts.jpg'
 import weedworld from '../images/weedworld.jpg'
+import patients from '../images/patients.jpg'
+import beaver from '../images/beaver.jpg'
+import world from '../images/world.jpg'
+import weedmama from '../images/weedmama.jpg'
+import weedadvisor from '../images/weedadvisor.jpg'
+import politics from '../images/politics.jpg'
+import thctimes from '../images/thctimes.jpg'
+import toolbox from '../images/toolbox.jpg'
+import miss from '../images/miss.jpg'
+import legalize from '../images/legalize.jpg'
+import experience from '../images/experience.jpg'
+import audio from '../images/audio.jpg'
+import stoned from '../images/stoned.jpg'
+import mjtoday from '../images/mjtoday.jpg'
+import munchies from '../images/munchies.jpg'
+import highthoughts from '../images/highthoughts.jpg'
+import herb from '../images/herb.jpg'
 
 class Links extends Component{
   render(){
   return (
-    <div className='container' 
+    <div className='container center-align' 
       style={{display: 'flex', alignContent: 'space-evenly', flexFlow: 'row wrap'}}>
 
       <div className=""
@@ -295,6 +312,227 @@ class Links extends Component{
             rel="noopener noreferrer"
             >
             <img className='barbarian center-align' alt="barbarian" src={weedworld}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.unitedpatientsgroup.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={patients}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.beaverbud.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={beaver}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.cannabisworld.biz"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={world}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.weedmama.ca"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={weedmama}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.weedadvisor.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={weedadvisor}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.marijuanapolitics.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={politics}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.thethctimes.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={thctimes}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.stonertoolbox.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={toolbox}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.missmarijuana.org"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={miss}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.liwts.org"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={legalize}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.maryjaneexperience.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={experience}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.audiokushhq.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={audio}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.stoneddaily.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={stoned}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.mjtodaypodcast.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={mjtoday}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.newsmunchies.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={munchies}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.high-thoughts.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={highthoughts}
+            style={{height: "100px", width: "100px"}}/>
+            </a>
+          </span>
+        </div>
+
+        <div className=""
+        style={{margin: '5px'}}>
+          <span>
+          <a href="https://www.herb4dasoul.com"
+            target="_blank" 
+            rel="noopener noreferrer"
+            >
+            <img className='barbarian center-align' alt="barbarian" src={herb}
             style={{height: "100px", width: "100px"}}/>
             </a>
           </span>
