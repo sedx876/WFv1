@@ -23,7 +23,7 @@ const Navbar = ({history}) => {
           
           <li>
             <Link className='light-green-text text-accent-1 active' style={isActive(history, '/users')} to="/users">
-              Members Directory
+              |Members Directory|
             </Link>
           </li>
 
@@ -32,13 +32,13 @@ const Navbar = ({history}) => {
             <>
             <li>
             <Link className='light-green-text text-accent-1' style={isActive(history, '/signin')} to='/signin'>
-              Sign In
+              |Sign In|
             </Link>
           </li>
 
           <li>
             <Link className='light-green-text text-accent-1' style={isActive(history, '/signup')} to='/signup'>
-              Create Account
+              |Create Account|
             </Link>
           </li>
           </>
@@ -54,19 +54,19 @@ const Navbar = ({history}) => {
 
     <li>
             <Link className='light-green-text text-accent-1 active' style={isActive(history, '/postfeed')} to="/postfeed">
-              Post Feed
+              |Post Feed|
             </Link>
           </li>
 
           <li className="nav-item light-green-text text-accent-1 active">
       <Link to={`/post/create`} style={isActive(history, `/post/create`)} className="nav-link light-green-text text-accent-1 active">
-        Create Post
+        |Create Post|
       </Link>
     </li>
 
           <li>
             <a className='light-green-text text-accent-1'>
-              Strain Journal
+              |Strain Journal|
             </a>
           </li>
 
@@ -74,7 +74,7 @@ const Navbar = ({history}) => {
     <span className="nav-link light-green-text text-accent-1 active">
       <Link to={`/user/${isAuthenticated().user._id}`}
       style={(isActive(history, `/user/${isAuthenticated().user._id}`))}>
-      {`${isAuthenticated().user.name} Profile`} 
+      {`|${isAuthenticated().user.name} Profile|`} 
       </Link>
     </span>
   </li>
@@ -83,7 +83,7 @@ const Navbar = ({history}) => {
     <span className="nav-link light-green-text text-accent-1 active" 
       style={{ cursor: 'pointer', color: '#fff' }} 
       onClick={() => signout(() => history.push('/'))}>
-      Log Out 
+      |Log Out| 
     </span>
   </li>
           </>}
